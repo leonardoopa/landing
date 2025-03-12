@@ -53,6 +53,18 @@ const ContactForm = () => {
     }, 1500);
   };
 
+  const generateWhatsAppLink = () => {
+    // Encoding values (to prevent issues in URL)
+    const messageText = `Olá, gostaria de saber mais sobre os serviços!\nNome: ${encodeURIComponent(name)}\nEmail: ${encodeURIComponent(email)}\nTelefone: ${encodeURIComponent(phone)}\nTipo de Negócio: ${encodeURIComponent(businessType)}\nMensagem: ${encodeURIComponent(message)}`;
+    
+    // Decoding the message for WhatsApp link
+    const decodedMessageText = decodeURIComponent(messageText);
+
+    // Generate the WhatsApp link with the decoded message
+    const whatsappLink = `https://api.whatsapp.com/send?phone=5581994088207&text=${encodeURIComponent(decodedMessageText)}`;
+    return whatsappLink;
+  };
+
   return (
     <section 
       id="contact" 
@@ -61,9 +73,9 @@ const ContactForm = () => {
     >
       <div className="container mx-auto container-padding">
         <div className="text-center max-w-2xl mx-auto mb-16 reveal-content">
-        <h2 className="heading-2 mb-4 text-black">
-          Pare de desperdiçar dinheiro em anúncios que não <span className="text-orange-500">Convertem</span>
-        </h2>
+          <h2 className="heading-2 mb-4 text-black">
+            Pare de desperdiçar dinheiro em anúncios que não <span className="text-orange-500">Convertem</span>
+          </h2>
           <p className="text-muted-foreground">
             Vamos expandir seu negócio com gerenciamento estratégico de tráfego e geração de leads qualificados
           </p>
@@ -89,6 +101,7 @@ const ContactForm = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     placeholder="Seu nome"
                     required
+                    style={{ color: 'black' }}
                   />
                 </div>
                 <div>
@@ -103,6 +116,7 @@ const ContactForm = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     placeholder="Seu email"
                     required
+                    style={{ color: 'black' }}
                   />
                 </div>
               </div>
@@ -110,7 +124,7 @@ const ContactForm = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                  Número de telefone
+                    Número de telefone
                   </label>
                   <input
                     id="phone"
@@ -119,6 +133,7 @@ const ContactForm = () => {
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     placeholder="Seu número de telefone"
+                    style={{ color: 'black' }}
                   />
                 </div>
                 <div>
@@ -154,19 +169,21 @@ const ContactForm = () => {
                   placeholder="Fale sobre seus objetivos"
                   rows={4}
                   required
+                  style={{ color: 'black' }}
                 />
               </div>
               
-              <button
-                type="submit"
-                disabled={isSubmitting}
+              <a
+                href={generateWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="button-primary w-full flex justify-center items-center gap-2"
               >
                 {isSubmitting ? (
                   <span className="inline-block h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin"></span>
                 ) : null}
                 {isSubmitting ? 'Enviando...' : 'Comece Agora'}
-              </button>
+              </a>
             </form>
           </div>
         </div>
