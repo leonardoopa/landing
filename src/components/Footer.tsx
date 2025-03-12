@@ -107,13 +107,13 @@ const Footer = () => {
               </li>
               <li className="text-gray-400">
                 <span className="block">Telefone:</span>
-                <a href="tel:+551234567890" className="text-orange-500 hover:text-orange-400">
-                  +55 (12) 3456-7890
+                <a href="tel:+5581994088207" className="text-orange-500 hover:text-orange-400">
+                  +55 (81) 99408-8207
                 </a>
               </li>
               <li className="text-gray-400">
                 <span className="block">WhatsApp:</span>
-                <a href="https://wa.me/551234567890" className="text-orange-500 hover:text-orange-400">
+                <a href="https://wa.me/5581994088207" className="text-orange-500 hover:text-orange-400">
                   Fale Agora
                 </a>
               </li>
